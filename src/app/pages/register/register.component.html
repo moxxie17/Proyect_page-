@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row d-flex justify-content-center align-items-center vh-100">
+      <div class="col-md-10 col-lg-4 col-sm-10 col-12">
+        <div class="card shadow rounded-2">
+            <div class="container d-flex justify-content-center mt-4">
+            </div>
+            <div class="card-body">
+                <h2 class="text-center">Registrar</h2>
+        <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+          <div class="form-group">
+            <label for="username" class="mb-2 fs-5 fw-bold">Usuario</label>
+            <input type="text" id="username" class="form-control mb-3 p-2 fs-5" [(ngModel)]="username" name="username" required>
+          </div>
+          <div class="form-group">
+            <label for="password" class="mb-2 fs-5 fw-bold">Contraseña</label>
+            <input type="password" id="password" class="form-control mb-3 p-2 fs-5" [(ngModel)]="password" name="password" (ngModelChange)="validatePassword()" required>
+          </div>
+          <div *ngIf="password && !minLength" class="alert alert-danger">
+            La contraseña debe tener al menos 8 caracteres.
+          </div>
+          <div *ngIf="password && !hasUpperCase" class="alert alert-danger">
+            La contraseña debe contener al menos una mayúscula.
+          </div>
+          <div *ngIf="password && !hasLowerCase" class="alert alert-danger">
+            La contraseña debe contener al menos una minúscula.
+          </div>
+          <div *ngIf="password && !hasSpecialChar" class="alert alert-danger">
+            La contraseña debe contener al menos un carácter especial.
+          </div>
+          <div *ngIf="password && !noConsecutiveNumbers" class="alert alert-danger">
+            La contraseña no debe contener números consecutivos.
+          </div>
+          <div *ngIf="password && !noConsecutiveLetters" class="alert alert-danger">
+            La contraseña no debe contener letras consecutivas en el abecedario.
+          </div>
+          <div class="d-grid gap-2 col-6 mx-auto mt-4 mb-4">
+            <button type="submit" class="btn btn-primary btn-block fs-5" [disabled]="!passwordValid">Registrar</button>
+          </div>
+          <div class="d-grid gap-2 col-10 mx-auto mt-4 mb-4">
+            <p>Ya tienes cuenta: <a href="/login">Iniciar Sesión</a></p>
+          </div>
+        </form>
+      </div>
+            </div>
+        </div>
+        
+    </div>
+  </div>
+  
